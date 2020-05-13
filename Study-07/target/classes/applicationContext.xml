@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+<!--    <bean id="logBefore" class="cn.BinGCU.advice.BeforeAdvice"/>-->
+<!--    <bean id="logAfter" class="cn.BinGCU.advice.AfterAdvice"/>-->
+
+<!--    <bean id="putItToTruck" class="cn.BinGCU.service.PutCargoToTruck"/>-->
+
+    <!--    第一种方式：使用接口实现“增强”-->
+<!--    <aop:config >-->
+<!--        <aop:pointcut id="putCargoToTruckPointcut" expression="execution(* cn.BinGCU.service.PutCargoToTruck.*(..))"/>-->
+
+<!--        &lt;!&ndash;执行环绕增强&ndash;&gt;-->
+<!--        <aop:advisor advice-ref="logBefore" pointcut-ref="putCargoToTruckPointcut"/>-->
+<!--        <aop:advisor advice-ref="logAfter" pointcut-ref="putCargoToTruckPointcut"/>-->
+<!--    </aop:config>-->
+
+
+<!--    第二种方式：自定义aspect类-->
+<!--    <bean id="putItToMinibus" class="cn.BinGCU.service.PutCargoToMinibus"/>-->
+<!--    <bean id="carAspect" class="cn.BinGCU.aspect.CarAspect"/>-->
+
+<!--    <aop:config>-->
+<!--        <aop:aspect id="putCargoToMinibusAspect" ref="carAspect">-->
+<!--            <aop:pointcut id="putItToMiniBusPointcut" expression="execution(* cn.BinGCU.service.PutCargoToMinibus.*(..))"/>-->
+
+<!--            <aop:before method="before" pointcut-ref="putItToMiniBusPointcut"/>-->
+<!--            <aop:after method="after" pointcut-ref="putItToMiniBusPointcut"/>-->
+<!--            <aop:after-returning method="returningAfter" pointcut-ref="putItToMiniBusPointcut"/>-->
+<!--        </aop:aspect>-->
+<!--    </aop:config>-->
+
+
+<!--    第三种方式：注解-->
+    <aop:aspectj-autoproxy/>
+
+    <bean id="installPackeage" class="cn.BinGCU.service.InstallPackage"/>
+    <bean id="installPackageAspect" class="cn.BinGCU.aspect.InstallPackageAspect"/>
+</beans>
+

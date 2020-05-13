@@ -1,0 +1,3 @@
+这个module就开始改造上一个module，在这里会加入spring的容器管理
+
+会删掉mybatisConfig.xml的一些配置，并把这些配置加入到spring 配置中

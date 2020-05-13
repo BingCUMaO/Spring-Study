@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd">
+
+<!--    如果需要使用外部Properties文件，需要导入context约束-->
+    <context:property-placeholder  location="mysql.properties"/>
+
+<!--    第一步，配置数据源-->
+<!--    这里有个坑，不知道原因是什么，估计是xml解析的问题-->
+<!-- 就是必须是${jdbc.driver}、${jdbc.url}等或者直接在这里写配置，而不能直接是${driver}、${url}等。因为会直接报错，不知道为什么-->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+
+<!--        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>-->
+<!--        <property name="url" value="jdbc:mysql://localhost:3306/test_mybatis?userSSL=false&amp;serverTimezone=UTC"/>-->
+<!--        <property name="username" value="root"/>-->
+<!--        <property name="password" value="brilliant"/>-->
+    </bean>
+
+<!--    第二步，配置mybatis-spring提供的SqlSessionFactoryBean-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <!--不要忘了把mybatis的config.xml也配置到spring的数据源上啊！！！-->
+        <property name="configLocation" value="mybatis.xml"/>
+    </bean>
+
+<!--    第三步，配置sqlSessionTemplate-->
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg ref="sqlSessionFactory"/>
+    </bean>
+</beans>

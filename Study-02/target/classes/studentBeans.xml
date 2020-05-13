@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="Student01" class="cn.BinGCU.pojo.Student" init-method="initMethod" destroy-method="destroyMethod" scope="singleton">
+        <property name="id" value="1000"/>
+        <property name="name" value="zhangsan"/>
+        <property name="books">
+            <array>
+                <value>《AAA》</value>
+                <value>《BBB》</value>
+                <value>《CCC》</value>
+                <value>《DDD》</value>
+            </array>
+        </property>
+        <property name="hobits">
+            <list>
+                <value>玩游戏</value>
+                <value>看电影</value>
+                <value>写代码</value>
+                <value>作死</value>
+            </list>
+        </property>
+        <property name="scores">
+            <map>
+                <entry key="语文" value="90"/>
+                <entry key="数学" value="70"/>
+                <entry key="英语" value="80"/>
+            </map>
+        </property>
+        <property name="props">
+            <props>
+                <prop key="username">root</prop>
+                <prop key="userpwd">brilliXXX</prop>
+            </props>
+        </property>
+    </bean>
+
+
+</beans>

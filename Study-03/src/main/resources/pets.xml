@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd">
+
+
+<!--    除了set注入和constructor注入外，还有第三种注入方式-->
+<!--        官方提供的拓展注入方式：p（properties）注入和c（constructor）注入-->
+<!--这种方式直接提供了bean标签属性，简化配置代码-->
+
+<!--    1、p注入-->
+    <bean id="catttttttt" class="cn.BinGCU.pojo.AninalImpl.Cat" p:name="zhangsanCat" scope="singleton"/>
+    <bean id="doggggg" class="cn.BinGCU.pojo.AninalImpl.Dog" p:name="zhangsanDog" scope="singleton"/>
+
+    <bean id="personnnnnn" class="cn.BinGCU.pojo.Person" p:cat-ref="catttttttt" p:dog-ref="doggggg"/>
+
+<!--    2、c注入-->
+    <bean id="personNNN" class="cn.BinGCU.pojo.Person" c:cat-ref="catttttttt" c:dog-ref="doggggg"/>
+
+
+    <bean id="caTT" class="cn.BinGCU.pojo.AninalImpl.Cat" p:name="lisiCat"/>
+    <bean id="doGG" class="cn.BinGCU.pojo.AninalImpl.Dog" p:name="lisiDog"/>
+
+    <bean id="personNNN2" class="cn.BinGCU.pojo.Person" c:cat-ref="caTT" c:dog-ref="doGG"/>
+
+
+
+
+
+
+
+
+
+<!--    自动装配-->
+<!--    除了启用context的annotation配置外，还要导入上面的context相关约束-->
+    <context:annotation-config />
+
+
+    <bean id="cat" class="cn.BinGCU.pojo.AninalImpl.Cat" p:name="wangwuCat"/>
+    <bean id="dog" class="cn.BinGCU.pojo.AninalImpl.Dog" p:name="wangwuDog"/>
+
+    <bean id="person" class="cn.BinGCU.pojo.Person" c:cat-ref="catttttttt" c:dog-ref="doggggg"/>
+
+</beans>
