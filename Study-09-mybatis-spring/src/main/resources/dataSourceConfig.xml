@@ -36,4 +36,21 @@
     <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
         <constructor-arg ref="sqlSessionFactory"/>
     </bean>
+
+<!--    第三步，还可以这样配置：-->
+
+<!--    配置dao接口扫描包，动态地实现Dao接口可以 注入到Spring的容器中-->
+<!--    这样就不用每个dao实现类都去写sqlSession的自动装配了：-->
+<!--    @Autowired-->
+<!--    @Qualifier("sqlSession")-->
+<!--    public void setSqlSession(SqlSessionTemplate sqlSession) {-->
+<!--    this.sqlSession = sqlSession;-->
+<!--    }-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+<!--        注入sqlSessionFactory-->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+<!--        要扫描的包-->
+        <property name="basePackage" value="cn.BinGCU.dao"/>
+    </bean>
+
 </beans>
